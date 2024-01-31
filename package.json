@@ -1,0 +1,17 @@
+{
+  "name": "jp-web-proxy",
+  "version": "1.0.0",
+  "description": "JPlez Web Proxy",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "axios": "^0.24.0"
+  },
+  "engines": {
+    "node": "14.x"
+  },
+  "license": "MIT"
+}
