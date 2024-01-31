@@ -16,6 +16,7 @@ app.get('/JPlez', async (req, res) => {
     const response = await axios.get(url);
     res.json(response.data);
   } catch (error) {
+    console.error('Proxy error:', error.message);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
