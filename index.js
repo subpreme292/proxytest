@@ -2,15 +2,16 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.get('/JPlez', async (req, res) => {
+app.get('/JPlez', (req, res) => {
   try {
-    // Your existing code
+    // Custom logic for the /JPlez endpoint
+    const responseData = { message: 'Custom response from JPlez endpoint!' };
 
     // Log success or important information
-    console.log('Proxy request successful');
+    console.log('JPlez endpoint accessed successfully');
 
     // Send response
-    res.json({ message: 'Success' });
+    res.json(responseData);
   } catch (error) {
     // Log the error
     console.error('Error:', error);
