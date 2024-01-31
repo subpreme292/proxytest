@@ -1,26 +1,27 @@
 const express = require('express');
+const axios = require('axios');
+
 const app = express();
-const port = process.env.PORT || 3000;
 
-app.get('/JPlez', (req, res) => {
+const targetUrl = 'https://example.com'; // Replace with your target URL
+
+app.all('/*', async (req, res) => {
   try {
-    // Custom logic for the /JPlez endpoint
-    const responseData = { message: 'Custom response from JPlez endpoint!' };
+    const response = await axios({
+      method: req.method,
+      url: `${targetUrl}${req.url}`,
+      headers: req.headers,
+      data: req.method === 'GET' ? undefined : req.body,
+    });
 
-    // Log success or important information
-    console.log('JPlez endpoint accessed successfully');
-
-    // Send response
-    res.json(responseData);
+    // Forward the response from the target server
+    res.status(response.status).send(response.data);
   } catch (error) {
-    // Log the error
-    console.error('Error:', error);
-
-    // Send an error response
-    res.status(500).json({ error: 'Internal server error' });
+    // Handle errors
+    console.error(error);
+    res.status(500).send('Internal Server Error');
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
+// Deploy the serverless function on Vercel
+module.exports = app;
