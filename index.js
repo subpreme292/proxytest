@@ -1,22 +1,21 @@
 const express = require('express');
-const axios = require('axios');
-
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(express.json());
-
 app.get('/JPlez', async (req, res) => {
   try {
-    const url = req.query.url;
-    if (!url) {
-      return res.status(400).json({ error: 'Missing URL parameter' });
-    }
+    // Your existing code
 
-    const response = await axios.get(url);
-    res.json(response.data);
+    // Log success or important information
+    console.log('Proxy request successful');
+
+    // Send response
+    res.json({ message: 'Success' });
   } catch (error) {
-    console.error('Proxy error:', error.message);
+    // Log the error
+    console.error('Error:', error);
+
+    // Send an error response
     res.status(500).json({ error: 'Internal server error' });
   }
 });
